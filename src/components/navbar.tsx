@@ -1,66 +1,88 @@
-import { useState, useEffect, useRef } from "react";
-import Button from "./button";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+const navigation = [
+  { name: "Home", href: "#", current: true },
+  { name: "Exercícios", href: "#", current: false },
+  { name: "Treinos", href: "#", current: false },
+  { name: "Planos", href: "#", current: false },
+];
 
-  const handleToggleMenu = () => setIsOpen(!isOpen);
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(" ");
+}
 
-  // Função para fechar o menu se clicar fora dele
-  const handleClickOutside = (event: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
+export default function Navbar() {
   return (
-    <div className="bg-black text-white h-full py-2 px-8">
-      <nav className="flex justify-between items-center">
-        {/* Logo */}
-        <div className="md:pl-20">
-          <img className="w-[25%]" src={logo} alt="Logo" />
-        </div>
-
-        {/* Botão de menu para mobile */}
-        <div className="lg:hidden">
-          <button onClick={handleToggleMenu} className="text-white">
-            &#9776; {/* Ícone de hambúrguer */}
-          </button>
-        </div>
-
-        {/* Links do menu */}
-        <div
-          ref={menuRef}
-          className={`${
-            isOpen ? "block" : "hidden"
-          } lg:flex lg:gap-12 lg:items-center absolute lg:static top-16 left-0 bg-black w-full lg:w-auto p-4 lg:p-0`}
-        >
-          <a href="home" className="block lg:inline">
-            Home
-          </a>
-          <a href="exercicios" className="block lg:inline">
-            Exercícios
-          </a>
-          <a href="treinos" className="block lg:inline">
-            Treinos
-          </a>
-          <a href="planos" className="block lg:inline">
-            Planos
-          </a>
-          <div>
-            <Button label="Contato" onClick={() => alert("Clicou!")} />
+    <Disclosure as="nav" className="bg-black">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between">
+          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+              <span className="absolute -inset-0.5" />
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon
+                aria-hidden="true"
+                className="block h-6 w-6 group-data-[open]:hidden"
+              />
+              <XMarkIcon
+                aria-hidden="true"
+                className="hidden h-6 w-6 group-data-[open]:block"
+              />
+            </DisclosureButton>
+          </div>
+          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <div className="flex shrink-0 items-center">
+              <img alt="Your Company" src={logo} className="h-8 w-auto" />
+            </div>
+            <div className="hidden sm:ml-6 sm:block">
+              <div className="flex space-x-4">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    aria-current={item.current ? "page" : undefined}
+                    className={classNames(
+                      item.current
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "rounded-md px-3 py-2 text-sm font-medium"
+                    )}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
-    </div>
-  );
-};
+      </div>
 
-export default Navbar;
+      <DisclosurePanel className="sm:hidden">
+        <div className="space-y-1 px-2 pb-3 pt-2">
+          {navigation.map((item) => (
+            <DisclosureButton
+              key={item.name}
+              as="a"
+              href={item.href}
+              aria-current={item.current ? "page" : undefined}
+              className={classNames(
+                item.current
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                "block rounded-md px-3 py-2 text-base font-medium"
+              )}
+            >
+              {item.name}
+            </DisclosureButton>
+          ))}
+        </div>
+      </DisclosurePanel>
+    </Disclosure>
+  );
+}
