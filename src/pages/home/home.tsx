@@ -1,44 +1,46 @@
 import Navbar from "../../components/navbar";
 import hero from "../../assets/image1.png";
-import Button from "../../components/button";
+import ButtonPrimary from "../../components/buttonPrimary";
 
 const Home = () => {
   return (
     <>
       <Navbar />
       <div
-        className="flex flex-col bg-black h-screen text-white px-36 pt-20 gap-8 bg-no-repeat bg-center"
+        className="flex flex-col bg-black md:h-screen h-auto pb-4 text-white md:px-36 px-4 md:pt-20 md:gap-8 gap-4 bg-no-repeat md:bg-center"
         style={{
           backgroundImage: `url(${hero})`,
-          backgroundSize: "45%",
-          backgroundPosition: "85%",
+          backgroundSize: window.innerWidth >= 768 ? "40%" : "65%",
+          backgroundPosition: window.innerWidth >= 768 ? "85%" : "100% -10%",
         }}
       >
-        <div className="flex  items-center justify-between">
-          <div className="text-9xl">
+        <div className="flex md:items-center justify-between">
+          <div className="md:text-9xl text-5xl">
             <h1>Exercícios</h1>
             <h1>Cardio</h1>
           </div>
-          <div className="flex flex-col gap-4">
-            <div className="bg-zinc-800 py-2 px-8 rounded-2xl">
-              <h3 className="text-yellow-300 text-3xl animate-blink">38:14</h3>
-              <p className="text-zinc-300 text-sm">Time</p>
+          <div className="flex flex-col gap-4 pt-10">
+            <div className="bg-zinc-800 py-2 md:px-8 px-2 rounded-2xl">
+              <h3 className="text-yellow-300 md:text-3xl animate-blink">
+                38:14
+              </h3>
+              <p className="text-zinc-300 md:text-sm text-xs">Time</p>
             </div>
-            <div className="bg-zinc-800 py-2 px-8 rounded-2xl">
-              <h3 className="text-red-600 text-3xl animate-blink">165</h3>
-              <p className="text-zinc-300 text-sm">Calorias</p>
+            <div className="bg-zinc-800 py-2 md:px-8 px-2 rounded-2xl">
+              <h3 className="text-red-600 md:text-3xl animate-blink">165</h3>
+              <p className="text-zinc-300 md:text-sm text-xs">Calorias</p>
             </div>
           </div>
         </div>
         <div>
           <p className="w-1/2 text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Transforme sua saúde com o poder dos exercícios cardio –
+            resistência, energia e bem-estar em cada movimento.
           </p>
         </div>
-        <div className="flex gap-4 w-1/2">
-          <Button label="Começar" onClick={() => alert("Clicou")} />
-          <Button
+        <div className="flex gap-4 md:w-1/2">
+          <ButtonPrimary label="Começar" onClick={() => alert("Clicou")} />
+          <ButtonPrimary
             label="Pré-visualização"
             onClick={() => alert("Clicou")}
             className="bg-zinc-800"
