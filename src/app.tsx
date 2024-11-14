@@ -13,6 +13,7 @@ const App = () => {
       <About />
       <Divider />
       <Training />
+      <Divider />
     </>
   );
 };
