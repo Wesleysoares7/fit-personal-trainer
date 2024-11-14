@@ -8,7 +8,7 @@ import logo from "../assets/logo.png";
 
 const navigation = [
   { name: "Home", href: "#", current: true },
-  { name: "Exercícios", href: "#", current: false },
+  { name: "Sobre", href: "about", current: false },
   { name: "Treinos", href: "#", current: false },
   { name: "Planos", href: "#", current: false },
 ];
@@ -17,7 +17,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar() {
+const Navbar = () => {
   return (
     <Disclosure as="nav" className="bg-black">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -85,4 +85,6 @@ export default function Navbar() {
       </DisclosurePanel>
     </Disclosure>
   );
-}
+};
+
+export default Navbar;
