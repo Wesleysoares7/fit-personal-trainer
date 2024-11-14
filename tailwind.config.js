@@ -14,6 +14,11 @@ export default {
       },
       colors: {
         primary1: "#fd9204",
+        primary2: "#4a4a4a",
+        secondary1: "#25D366",
+      },
+      fontFamily: {
+        blackOps: ['"Black Ops One"', "sans-serif"],
       },
     },
   },
