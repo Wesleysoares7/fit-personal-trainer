@@ -1,13 +1,11 @@
-import Navbar from "../../components/navbar";
 import hero from "../../assets/image1.png";
 import ButtonPrimary from "../../components/buttonPrimary";
 
 const Home = () => {
   return (
     <>
-      <Navbar />
       <div
-        className="flex flex-col bg-black md:h-screen h-auto pb-4 text-white md:px-36 px-4 md:pt-20 md:gap-8 gap-4 bg-no-repeat md:bg-center"
+        className="flex flex-col bg-black md:h-screen pb-4 text-white md:px-36 px-4 md:pt-20 md:gap-8 gap-4 bg-no-repeat md:bg-center"
         style={{
           backgroundImage: `url(${hero})`,
           backgroundSize: window.innerWidth >= 768 ? "40%" : "65%",
@@ -15,7 +13,7 @@ const Home = () => {
         }}
       >
         <div className="flex md:items-center justify-between">
-          <div className="md:text-9xl text-5xl">
+          <div className="md:text-9xl text-5xl md:pt-0 pt-8">
             <h1>Exercícios</h1>
             <h1>Cardio</h1>
           </div>
